@@ -1,0 +1,313 @@
+<?xml version="1.0"?>
+<mavlink>
+  <version>3</version>
+  <enums>
+    <enum name="GPI_MEDIA_PLAY_STATE">
+      <description>Play State</description>
+      <entry value="10" name="GPI_MEDIA_PLAY_STATE_STOP">
+        <description>Stop</description>
+      </entry>
+      <entry value="11" name="GPI_MEDIA_PLAY_STATE_PLAY">
+        <description>Play</description>
+      </entry>
+      <entry value="12" name="GPI_MEDIA_PLAY_STATE_PAUSE">
+        <description>Pause</description>
+      </entry>
+      <entry value="13" name="GPI_MEDIA_PLAY_STATE_ASK_STATE">
+        <description>Ask State</description>
+      </entry>
+    </enum>
+    <enum name="GPI_MEDIA_MODE">
+      <description>Play Mode</description>
+      <entry value="10" name="GPI_MEDIA_MODE_ONCE">
+        <description>Once</description>
+      </entry>
+      <entry value="11" name="GPI_MEDIA_MODE_OCYCLE">
+        <description>Once cycle</description>
+      </entry>
+      <entry value="12" name="GPI_MEDIA_MODE_LIST">
+        <description>List</description>
+      </entry>
+      <entry value="13" name="GPI_MEDIA_MODE_LCYCLE">
+        <description>List Ocycle</description>
+      </entry>
+      <entry value="14" name="GPI_MEDIA_MODE_RANDOM">
+        <description>Random</description>
+      </entry>
+    </enum>
+    <enum name="GPI_MEDIA_CHANNEL">
+      <description>Channel</description>
+      <entry value="0" name="GPI_MEDIA_CHANNEL_MUSIC">
+        <description>Background Music</description>
+      </entry>
+      <entry value="1" name="GPI_MEDIA_CHANNEL_RECORD">
+        <description>Record</description>
+      </entry>
+      <entry value="2" name="GPI_MEDIA_CHANNEL_VOICE">
+        <description>Real-time Record</description>
+      </entry>
+      <entry value="3" name="GPI_MEDIA_CHANNEL_TTS">
+        <description>TTS</description>
+      </entry>
+      <entry value="4" name="GPI_MEDIA_CHANNEL_BUFF">
+        <description>Cache File</description>
+      </entry>
+    </enum>
+    <enum name="GPI_STREAM_CONTROL">
+      <description>Stream Action/Control</description>
+      <entry value="10" name="GPI_STREAM_CONTROL_UPLOAD_START">
+        <description>Upload Start</description>
+      </entry>
+      <entry value="11" name="GPI_STREAM_CONTROL_UPLOAD_STOP">
+        <description>Upload Stop</description>
+      </entry>
+      <entry value="12" name="GPI_STREAM_CONTROL_REALTIME_START">
+        <description>Real-time Start</description>
+      </entry>
+      <entry value="13" name="GPI_STREAM_CONTROL_REALTIME_STOP">
+        <description>Real-time Stop</description>
+      </entry>
+    </enum>
+    <enum name="GPI_STREAM_ENCODE_TYPE">
+      <description>Stream Encode Type</description>
+      <entry value="0" name="GPI_STREAM_ENCODE_TYPE_PCM">
+        <description>PCM</description>
+      </entry>
+      <entry value="1" name="GPI_STREAM_ENCODE_TYPE_MP3">
+        <description>MP3</description>
+      </entry>
+      <entry value="2" name="GPI_STREAM_ENCODE_TYPE_ALAW">
+        <description>PCM_ALAW</description>
+      </entry>
+      <entry value="3" name="GPI_STREAM_ENCODE_TYPE_ULAW">
+        <description>PCM_ULAW</description>
+      </entry>
+    </enum>
+    <enum name="GPI_CMD_RESULT">
+      <description>Command Result</description>
+      <entry value="0" name="GPI_CMD_RESULT_OK">
+        <description>Ok</description>
+      </entry>
+      <entry value="1" name="GPI_CMD_RESULT_FAIL">
+        <description>Fail</description>
+      </entry>
+      <entry value="3" name="GPI_CMD_RESULT_BUSY">
+        <description>Busy</description>
+      </entry>
+    </enum>
+  </enums>
+  <messages>
+    <message id="100000" name="CMD_GET_DEVICE_MODEL">
+      <description>Get device's model</description>
+      <field type="uint8_t" name="param_reserved">reserved</field>
+    </message>
+    <message id="100001" name="ACK_DEVICE_MODEL">
+      <description>Device's model type</description>
+      <field type="char[255]" name="model">Device Type</field>
+    </message>
+    <message id="100002" name="CMD_GET_DEVICE_INFO">
+      <description>Get device's model info</description>
+      <field type="uint8_t" name="param_reserved">reserved</field>
+    </message>
+    <message id="100003" name="ACK_DEVICE_INFO">
+      <description>Device's information</description>
+      <field type="char[255]" name="info">Device Information</field>
+    </message>
+    <message id="100004" name="CMD_GET_SET_VOLTAGE">
+      <description>Get/Set Voltage</description>
+      <field type="uint8_t" name="vol">0-53, 0: read, 24: 24+/-2V</field>
+    </message>
+    <message id="100005" name="CMD_ACK_VOLTAGE">
+      <description>Support Voltage</description>
+      <field type="uint8_t" name="vol">Return Current Voltage</field>
+    </message>
+    <message id="100014" name="CMD_QUERY_SYS_STATE">
+      <description>Query system state</description>
+      <field type="uint32_t" name="status_id">Offset(settting)</field>
+    </message>
+    <message id="100015" name="ACK_SYS_STATE">
+      <description>System state ack</description>
+      <field type="uint8_t" name="result">0: succeed 1: failed 3: busy</field>
+      <field type="uint32_t" name="status_id">Offset(settting)</field>
+      <field type="char[200]" name="status_info">parameters</field>
+    </message>
+    <message id="100016" name="CMD_SET_LIGHT_SWITCH">
+      <description>Turn on or off the light</description>
+      <field type="uint8_t" name="enable">0: close 1: open</field>
+    </message>
+    <message id="100017" name="CMD_SET_LIGHT_BRIGHTNESS">
+      <description>Set light brightness</description>
+      <field type="uint8_t" name="brightness">brightness range: 0-100</field>
+    </message>
+    <message id="100018" name="CMD_SET_LIGHT_FLASH">
+      <description>Turn on or off the flashing state </description>
+      <field type="uint8_t" name="enable">0: close 1: open</field>
+    </message>
+    <message id="100019" name="CMD_SET_LIGHT_ZOOM">
+      <description>Set light zoom value</description>
+      <field type="uint8_t" name="zoom">zoom range: 0-100</field>
+    </message>
+    <message id="100020" name="CMD_GET_TEMPERATURE">
+      <description>Get device's temperature</description>
+      <field type="uint8_t" name="led_temperature">Led temperature</field>
+      <field type="uint8_t" name="driver_temperature">Driver temperature</field>
+    </message>
+    <message id="100032" name="CMD_SET_GIMBAL_ATT">
+      <description>Set gimbal's attitude</description>
+      <field type="int16_t" name="pitch">Pitch: -1200~450 unit: 0.1 deg</field>
+      <field type="int16_t" name="yaw">Yaw: -2700-2700 unit: 0.1 deg</field>
+    </message>
+    <message id="100033" name="CMD_SET_GIMBAL_ATT_TUNNING">
+      <description>Set gimbal's att tunning</description>
+      <field type="int16_t" name="pitch">Pitch: -1200~450 unit: 0.1 deg</field>
+      <field type="int16_t" name="roll">Roll: -300~300 unit: 0.1 deg</field>
+      <field type="int16_t" name="yaw">Yaw: -2700-2700 unit: 0.1 deg</field>
+    </message>
+    <message id="100034" name="CMD_SAVE_GIMBAL_TUNNING">
+      <description>Set gimbal's tunning</description>
+      <field type="uint8_t" name="param_1">parameter 1</field>
+    </message>
+    <message id="100035" name="CMD_START_GIMBAL_CALIBRATE">
+      <description>start gimbal temperature calibration</description>
+      <field type="uint8_t" name="param_1">parameter 1</field>
+    </message>
+    <message id="100049" name="CMD_SET_TAKEOFF_STATE">
+      <description>Set aircraft's takeoff state</description>
+      <field type="uint8_t" name="is_takeoff">Takeoff state, if the aircraft has taken off, the power limit of the device will be lifted. 0: no takeoff 1: takeoff</field>
+    </message>
+    <message id="100085" name="CMD_TTS_TEXT">
+      <description>TTS Broadcast</description>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+      <field type="char[250]" name="text">TTS Text</field>
+    </message>
+    <message id="100086" name="CMD_TTS_STATE">
+      <description>TTS state setting.</description>
+      <field type="uint8_t" name="state" enum="GPI_MEDIA_PLAY_STATE">State</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+    </message>
+    <message id="100087" name="CMD_TTS_CYCLE">
+      <description>TTS Cycle Mode</description>
+      <field type="uint8_t" name="mode" enum="GPI_MEDIA_MODE">Mode</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+    </message>
+    <message id="100090" name="CMD_MUSIC_NAME">
+      <description>Background Music File Play</description>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+      <field type="char[100]" name="name">File Name</field>
+    </message>
+    <message id="100091" name="CMD_MUSIC_STATE">
+      <description>Background Music Play Setting</description>
+      <field type="uint8_t" name="state" enum="GPI_MEDIA_PLAY_STATE">State</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+    </message>
+    <message id="100092" name="CMD_MUSIC_CYCLE">
+      <description>Background Music Play Cycle Mode</description>
+      <field type="uint8_t" name="mode" enum="GPI_MEDIA_MODE">Mode</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+    </message>
+    <message id="100093" name="CMD_BACKGROUND_MUSIC_VOLUME">
+      <description>Background Music Volume</description>
+      <field type="uint8_t" name="volume">Volume</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+    </message>
+    <message id="100094" name="CMD_RECORD_NAME">
+      <description>Record File Play</description>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+      <field type="char[100]" name="name">Record File Name</field>
+    </message>
+    <message id="100095" name="CMD_RECORD_STATE">
+      <description>Record Play Setting</description>
+      <field type="uint8_t" name="state" enum="GPI_MEDIA_PLAY_STATE">State</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+    </message>
+    <message id="100096" name="CMD_RECORD_CYCLE">
+      <description>Record Play Cycle Setting</description>
+      <field type="uint8_t" name="mode" enum="GPI_MEDIA_MODE">Mode</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+    </message>
+    <message id="100097" name="CMD_STREAM_FUNCTION">
+      <description>Steam Mode</description>
+      <field type="uint8_t" name="action" enum="GPI_STREAM_CONTROL">Stream Action</field>
+      <field type="uint8_t" name="type" enum="GPI_STREAM_ENCODE">Type</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+    </message>
+    <message id="100098" name="CMD_STREAM_UP_DATA">
+      <description>Steam Data</description>
+      <field type="uint8_t" name="len">Length</field>
+      <field type="char[250]" name="data">Data</field>
+    </message>
+    <message id="100099" name="CMD_BUFFER_MEDIA_STATE">
+      <description>Cache Play State Setting</description>
+      <field type="uint8_t" name="state" enum="GPI_MEDIA_PLAY_STATE">State</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+    </message>
+    <message id="100100" name="CMD_READ_FILE_LIST">
+      <description>Read File List</description>
+      <field type="uint8_t" name="channel" enum="GPI_MEDIA_CHANNEL">Channel Num</field>
+      <field type="uint8_t" name="id">ID</field>
+      <field type="uint8_t" name="sum">File total</field>
+      <field type="char[100]" name="name">File name</field>
+    </message>
+    <message id="100101" name="CMD_MODIFY_FILE_NAME">
+      <description>Modify File Name</description>
+      <field type="uint8_t" name="channel" enum="GPI_MEDIA_CHANNEL">Channel Num</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+      <field type="char[100]" name="oldName">Old Name</field>
+      <field type="char[100]" name="newName">New Name</field>
+    </message>
+    <message id="100102" name="CMD_DELETE_FILE">
+      <description>Delete File</description>
+      <field type="uint8_t" name="channel" enum="GPI_MEDIA_CHANNEL">Channel Num</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+      <field type="char[100]" name="name">File Name</field>
+    </message>
+    <message id="100103" name="CMD_SAVE_FILE">
+      <description>Save File</description>
+      <field type="uint8_t" name="channel" enum="GPI_MEDIA_CHANNEL">Channel Num</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+      <field type="char[100]" name="name">File Name</field>
+    </message>
+    <message id="100104" name="CMD_FILE_SORT_TOP">
+      <description>Sort Top</description>
+      <field type="uint8_t" name="channel" enum="GPI_MEDIA_CHANNEL">Channel Num</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+      <field type="char[100]" name="name">Top File Name</field>
+    </message>
+    <message id="100105" name="CMD_DELETE_ALL_FILE">
+      <description>Delete All File</description>
+      <field type="uint8_t" name="channel" enum="GPI_MEDIA_CHANNEL">Channel Num</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+    </message>
+    <message id="100112" name="CMD_SERVO_ANGLE">
+      <description>Servo Angle Setting</description>
+      <field type="uint8_t" name="angle">Angle</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+    </message>
+    <message id="100113" name="CMD_SET_SYSTEM_VOLUME">
+      <description>System Volume</description>
+      <field type="uint8_t" name="volume">Volume</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+    </message>
+    <message id="100256" name="TH4_CURRENT_STATE">
+      <description>Return TH4 current state</description>
+      <field type="uint8_t" name="lock">0xa2: locked 0xa3: unlocked</field>
+      <field type="uint8_t" name="location">throwing hook position: 0xb0~0xb4</field>
+    </message>
+    <message id="100257" name="TH4_ERROR_STATE">
+      <description>Return TH4 error state</description>
+      <field type="uint8_t" name="error">0xc0: Stuck 0xc1: Data error</field>
+    </message>
+    <message id="100258" name="TH4_EXECUTION_THROW">
+      <description>TH4 Execution throw</description>
+      <field type="uint8_t" name="target_location">throwing hook position: 0xb0~0xb4</field>
+    </message>
+    <message id="100259" name="TH4_LOCK">
+      <description>TH4 lock state</description>
+      <field type="uint8_t" name="lock">0xa2: locked 0xa3: unlocked</field>
+    </message>
+    <message id="100260" name="TH4_ALL_DOWN">
+      <description>Full throw</description>
+      <field type="uint8_t" name="all_down">0xb0: One-click toss</field>
+    </message>
+  </messages>
+</mavlink>
