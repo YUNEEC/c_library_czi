@@ -121,6 +121,10 @@
       <description>Support Voltage</description>
       <field type="uint8_t" name="vol">Return Current Voltage</field>
     </message>
+    <message id="100006" name="CMD_SET_CUSTOM_STRING">
+      <description>user define string data, saving SN or Other Data</description>
+      <field type="char[128]" name="custom_string">user define string</field>
+    </message>
     <message id="100014" name="CMD_QUERY_SYS_STATE">
       <description>Query system state</description>
       <field type="uint32_t" name="status_id">Offset(settting)</field>
@@ -174,6 +178,22 @@
     <message id="100049" name="CMD_SET_TAKEOFF_STATE">
       <description>Set aircraft's takeoff state</description>
       <field type="uint8_t" name="is_takeoff">Takeoff state, if the aircraft has taken off, the power limit of the device will be lifted. 0: no takeoff 1: takeoff</field>
+    </message>
+    <message id="100050" name="CMD_UPDATE_VEHICLE_STATE">
+      <description>Update aircraft's state</description>
+      <field type="int16_t" name="acc_x">accelerated speed x 0.01m/s2</field>
+      <field type="int16_t" name="acc_y">accelerated speed y 0.01m/s2</field>
+      <field type="int16_t" name="acc_z">accelerated speed z 0.01m/s2</field>
+      <field type="int16_t" name="gimbal_mount_offset">the offset from gimbal direction to vehicle direction. avalible number:0-360 0.1degree each</field>
+      <field type="int16_t" name="vehicle_yaw">yaw angle. from north to east, north=0.avalible number:0-360 0.1degree each. </field>
+    </message>
+    <message id="100084" name="CMD_TTS_TEXT_EXPAND">
+      <description>TTS Broadcast Expand</description>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+      <field type="uint8_t" name="seq">the sequence number of each tts-package</field>
+      <field type="uint16_t" name="total_len">TTS Text Total Length</field>
+      <field type="uint8_t" name="this_len">This TTS Text Data Length(248 MAX)</field>
+      <field type="char[248]" name="text">TTS Text</field>
     </message>
     <message id="100085" name="CMD_TTS_TEXT">
       <description>TTS Broadcast</description>
@@ -276,6 +296,17 @@
     <message id="100105" name="CMD_DELETE_ALL_FILE">
       <description>Delete All File</description>
       <field type="uint8_t" name="channel" enum="GPI_MEDIA_CHANNEL">Channel Num</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+    </message>
+    <message id="100106" name="CMD_COPY_FILE_FROM_RECORD_TO_BGM">
+      <description>Copy File From Record to Background Music</description>
+      <field type="uint8_t" name="channel" enum="GPI_MEDIA_CHANNEL">Channel Num</field>
+      <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
+      <field type="char[100]" name="name">File Name</field>
+    </message>
+    <message id="100107" name="CMD_CAMERA_CHANNEL_SET">
+      <description>Set Bridge for MP140 Camera</description>
+      <field type="uint8_t" name="status">1:to gpi 2:to ext 3:off</field>
       <field type="uint8_t" name="result" enum="GPI_CMD_RESULT">Result</field>
     </message>
     <message id="100112" name="CMD_SERVO_ANGLE">
