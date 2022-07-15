@@ -11,6 +11,30 @@
       <field type="uint8_t" name="system_status" enum="MAV_STATE">System status flag.</field>
       <field type="uint8_t_mavlink_version" name="mavlink_version">MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version</field>
     </message>
+    <message id="76" name="COMMAND_LONG">
+      <description>Send a command with up to seven parameters to the MAV. The command microservice is documented at https://mavlink.io/en/services/command.html</description>
+      <field type="uint8_t" name="target_system">System which should execute the command</field>
+      <field type="uint8_t" name="target_component">Component which should execute the command, 0 for all components</field>
+      <field type="uint16_t" name="command" enum="MAV_CMD">Command ID (of command to send).</field>
+      <field type="uint8_t" name="confirmation">0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)</field>
+      <field type="float" name="param1" invalid="NaN">Parameter 1 (for the specific command).</field>
+      <field type="float" name="param2" invalid="NaN">Parameter 2 (for the specific command).</field>
+      <field type="float" name="param3" invalid="NaN">Parameter 3 (for the specific command).</field>
+      <field type="float" name="param4" invalid="NaN">Parameter 4 (for the specific command).</field>
+      <field type="float" name="param5" invalid="NaN">Parameter 5 (for the specific command).</field>
+      <field type="float" name="param6" invalid="NaN">Parameter 6 (for the specific command).</field>
+      <field type="float" name="param7" invalid="NaN">Parameter 7 (for the specific command).</field>
+    </message>
+    <message id="77" name="COMMAND_ACK">
+      <description>Report status of a command. Includes feedback whether the command was executed. The command microservice is documented at https://mavlink.io/en/services/command.html</description>
+      <field type="uint16_t" name="command" enum="MAV_CMD">Command ID (of acknowledged command).</field>
+      <field type="uint8_t" name="result" enum="MAV_RESULT">Result of command.</field>
+      <extensions/>
+      <field type="uint8_t" name="progress" invalid="UINT8_MAX">Also used as result_param1, it can be set with an enum containing the errors reasons of why the command was denied, or the progress percentage when result is MAV_RESULT_IN_PROGRESS (UINT8_MAX if the progress is unknown).</field>
+      <field type="int32_t" name="result_param2">Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.</field>
+      <field type="uint8_t" name="target_system">System ID of the target recipient. This is the ID of the system that sent the command for which this COMMAND_ACK is an acknowledgement.</field>
+      <field type="uint8_t" name="target_component">Component ID of the target recipient. This is the ID of the system that sent the command for which this COMMAND_ACK is an acknowledgement.</field>
+    </message>
     <message id="265" name="MOUNT_ORIENTATION">
       <deprecated since="2020-01" replaced_by="MAV_CMD_DO_GIMBAL_MANAGER_PITCHYAW">This message is being superseded by MAV_CMD_DO_GIMBAL_MANAGER_PITCHYAW. The message can still be used to communicate with legacy gimbals implementing it.</deprecated>
       <description>Orientation of a mount</description>

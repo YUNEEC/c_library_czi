@@ -34,6 +34,16 @@ extern "C" {
 // ENUM DEFINITIONS
 
 
+/** @brief  */
+#ifndef HAVE_ENUM_MAV_CMD
+#define HAVE_ENUM_MAV_CMD
+typedef enum MAV_CMD
+{
+   MAV_CMD_DO_CZI_GPI_GIMBAL_SYNC=65500, /* Synchronize the attitude of the main gimbal. |0: OFF, 1: ON| Default: 154| Empty.| Empty.| Empty.| Empty.| Empty.|  */
+   MAV_CMD_ENUM_END=65501, /*  | */
+} MAV_CMD;
+#endif
+
 /** @brief Play State */
 #ifndef HAVE_ENUM_GPI_MEDIA_PLAY_STATE
 #define HAVE_ENUM_GPI_MEDIA_PLAY_STATE

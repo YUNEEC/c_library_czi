@@ -2,6 +2,19 @@
 <mavlink>
   <version>3</version>
   <enums>
+    <enum name="MAV_CMD">
+      <!-- 65500 to 65535 used by common.xml -->
+      <entry value="65500" name="MAV_CMD_DO_CZI_GPI_GIMBAL_SYNC" hasLocation="false" isDestination="false">
+        <description>Synchronize the attitude of the main gimbal.</description>
+        <param index="1" label="Switch">0: OFF, 1: ON</param>
+        <param index="2" label="CompID">Default: 154</param>
+        <param index="3">Empty.</param>
+        <param index="4">Empty.</param>
+        <param index="5">Empty.</param>
+        <param index="6">Empty.</param>
+        <param index="7">Empty.</param>
+      </entry>
+    </enum>
     <enum name="GPI_MEDIA_PLAY_STATE">
       <description>Play State</description>
       <entry value="10" name="GPI_MEDIA_PLAY_STATE_STOP">
