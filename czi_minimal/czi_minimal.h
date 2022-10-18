@@ -24,7 +24,7 @@ extern "C" {
 #endif
 
 #ifndef MAVLINK_MESSAGE_CRCS
-#define MAVLINK_MESSAGE_CRCS {{0, 50, 9, 9, 0, 0, 0}, {76, 152, 33, 33, 3, 30, 31}, {77, 143, 3, 10, 3, 8, 9}, {265, 26, 16, 20, 0, 0, 0}}
+#define MAVLINK_MESSAGE_CRCS {{0, 50, 9, 9, 0, 0, 0}, {30, 39, 28, 28, 0, 0, 0}, {76, 152, 33, 33, 3, 30, 31}, {77, 143, 3, 10, 3, 8, 9}, {265, 26, 16, 20, 0, 0, 0}}
 #endif
 
 #include "../protocol.h"
@@ -48,6 +48,7 @@ extern "C" {
 
 // MESSAGE DEFINITIONS
 #include "./mavlink_msg_heartbeat.h"
+#include "./mavlink_msg_attitude.h"
 #include "./mavlink_msg_command_long.h"
 #include "./mavlink_msg_command_ack.h"
 #include "./mavlink_msg_mount_orientation.h"
@@ -59,8 +60,8 @@ extern "C" {
 #define MAVLINK_THIS_XML_IDX 1
 
 #if MAVLINK_THIS_XML_IDX == MAVLINK_PRIMARY_XML_IDX
-# define MAVLINK_MESSAGE_INFO {MAVLINK_MESSAGE_INFO_HEARTBEAT, MAVLINK_MESSAGE_INFO_COMMAND_LONG, MAVLINK_MESSAGE_INFO_COMMAND_ACK, MAVLINK_MESSAGE_INFO_MOUNT_ORIENTATION}
-# define MAVLINK_MESSAGE_NAMES {{ "COMMAND_ACK", 77 }, { "COMMAND_LONG", 76 }, { "HEARTBEAT", 0 }, { "MOUNT_ORIENTATION", 265 }}
+# define MAVLINK_MESSAGE_INFO {MAVLINK_MESSAGE_INFO_HEARTBEAT, MAVLINK_MESSAGE_INFO_ATTITUDE, MAVLINK_MESSAGE_INFO_COMMAND_LONG, MAVLINK_MESSAGE_INFO_COMMAND_ACK, MAVLINK_MESSAGE_INFO_MOUNT_ORIENTATION}
+# define MAVLINK_MESSAGE_NAMES {{ "ATTITUDE", 30 }, { "COMMAND_ACK", 77 }, { "COMMAND_LONG", 76 }, { "HEARTBEAT", 0 }, { "MOUNT_ORIENTATION", 265 }}
 # if MAVLINK_COMMAND_24BIT
 #  include "../mavlink_get_info.h"
 # endif

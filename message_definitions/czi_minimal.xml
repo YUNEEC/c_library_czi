@@ -11,6 +11,16 @@
       <field type="uint8_t" name="system_status" enum="MAV_STATE">System status flag.</field>
       <field type="uint8_t_mavlink_version" name="mavlink_version">MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version</field>
     </message>
+    <message id="30" name="ATTITUDE">
+      <description>The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right).</description>
+      <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
+      <field type="float" name="roll" units="rad">Roll angle (-pi..+pi)</field>
+      <field type="float" name="pitch" units="rad">Pitch angle (-pi..+pi)</field>
+      <field type="float" name="yaw" units="rad">Yaw angle (-pi..+pi)</field>
+      <field type="float" name="rollspeed" units="rad/s">Roll angular speed</field>
+      <field type="float" name="pitchspeed" units="rad/s">Pitch angular speed</field>
+      <field type="float" name="yawspeed" units="rad/s">Yaw angular speed</field>
+    </message>
     <message id="76" name="COMMAND_LONG">
       <description>Send a command with up to seven parameters to the MAV. The command microservice is documented at https://mavlink.io/en/services/command.html</description>
       <field type="uint8_t" name="target_system">System which should execute the command</field>
